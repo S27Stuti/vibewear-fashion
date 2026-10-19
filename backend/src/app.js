@@ -72,6 +72,23 @@ app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/orders', orderRoutes);
 app.use('/api/v1/reviews', reviewRoutes);
 
+// Serve static frontend build if dist exists (All-in-one Single Port Serving)
+const path = require('path');
+const frontendDist = path.join(__dirname, '../../frontend/dist');
+app.use(express.static(frontendDist));
+
+// Catch-all route to serve React index.html for client-side routing (Express 5 compatible)
+app.use((req, res, next) => {
+  if (req.method !== 'GET') return next();
+  if (req.path.startsWith('/api') || req.path.startsWith('/database') || req.path.startsWith('/db-status')) {
+    return next();
+  }
+  const indexPath = path.join(frontendDist, 'index.html');
+  res.sendFile(indexPath, (err) => {
+    if (err) next();
+  });
+});
+
 // 404 Handler & Global Error Handler
 app.use(notFound);
 app.use(errorHandler);
