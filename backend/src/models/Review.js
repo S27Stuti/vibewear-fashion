@@ -31,6 +31,19 @@ const Review = sequelize.define(
       validate: {
         notEmpty: { msg: 'Please provide review comments' }
       }
+    },
+    image: {
+      type: DataTypes.TEXT('long'),
+      allowNull: true
+    },
+    audioUrl: {
+      type: DataTypes.TEXT('long'),
+      allowNull: true
+    },
+    audioDuration: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
     }
   },
   {

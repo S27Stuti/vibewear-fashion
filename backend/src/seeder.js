@@ -24,7 +24,16 @@ const sampleUsers = [
     name: 'Jane Smith',
     email: 'jane@example.com',
     password: 'Password123!',
-    role: 'Customer'
+    role: 'Customer',
+    phone: '+91 98765 43210'
+  },
+  {
+    name: 'Vikram Malhotra (VibeExpress Agent)',
+    email: 'delivery@vibewear.com',
+    password: 'Password123!',
+    role: 'DeliveryPartner',
+    phone: '+91 98201 55432',
+    vehicleDetails: 'Hero Electric Optima - MH 02 CW 9921'
   }
 ];
 

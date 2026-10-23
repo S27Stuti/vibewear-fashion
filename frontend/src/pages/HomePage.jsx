@@ -2,15 +2,20 @@ import React from 'react';
 import HeroBanner from '../components/home/HeroBanner';
 import CategoryHighlights from '../components/home/CategoryHighlights';
 import ProductCard from '../components/common/ProductCard';
-import { ArrowRight, Sparkles, Flame, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Flame, ShieldCheck, Zap, Package, Truck } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const HomePage = ({
   products,
   onSelectProduct,
+  onQuickView,
   onSelectCategory,
   onNavigateProducts,
-  onOpenAI
+  onNavigateCustomer,
+  onOpenAI,
+  onTrackOrder
 }) => {
+  const { userOrders, openProfile } = useAuth();
   const featuredProducts = products.filter((p) => p.isFeatured).slice(0, 8);
   const displayProducts = featuredProducts.length > 0 ? featuredProducts : products.slice(0, 8);
 
@@ -20,7 +25,67 @@ const HomePage = ({
       <HeroBanner
         onSelectCategory={onSelectCategory}
         onNavigateProducts={onNavigateProducts}
+        onNavigateCustomer={onNavigateCustomer}
       />
+
+      {/* Prominent My Orders Access Card on Home Page */}
+      {userOrders && userOrders.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-10 relative z-20 animate-slide-up">
+          <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#0D0B18] border-2 border-purple-200 dark:border-pink-500/40 shadow-2xl backdrop-blur-xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5 text-slate-900 dark:text-white">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/10 to-brand-600/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="flex items-start sm:items-center gap-4 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 via-pink-600 to-purple-600 flex items-center justify-center text-white shadow-xl shadow-pink-500/30 shrink-0">
+                <Package className="w-7 h-7" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-500/30">
+                    📦 {userOrders.length} Order{userOrders.length > 1 ? 's' : ''} Placed
+                  </span>
+                  <span className="text-xs font-bold text-slate-500 dark:text-white/60">
+                    Latest: <strong className="font-mono text-slate-900 dark:text-white">#{userOrders[0]?.id || userOrders[0]?._id}</strong>
+                  </span>
+                </div>
+                <h3 className="text-base sm:text-lg font-black font-display text-slate-950 dark:text-white">
+                  Manage Your Orders, Track Delivery & Request Returns
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-white/70">
+                  Current Status: <strong className="text-pink-600 dark:text-pink-400 font-bold">{userOrders[0]?.orderStatus || 'Confirmed'}</strong> • Full support for Cancel Order, 7-Day Doorstep Return & Size/Color Exchange.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto relative z-10 shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  if (onNavigateCustomer) {
+                    onNavigateCustomer();
+                  } else {
+                    openProfile('orders');
+                  }
+                }}
+                className="flex-1 sm:flex-none py-3 px-5 rounded-xl bg-gradient-to-r from-brand-600 via-pink-600 to-purple-600 hover:from-brand-500 hover:to-pink-500 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-pink-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              >
+                <Package className="w-4 h-4 text-white" />
+                <span>View All My Orders</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (onTrackOrder) onTrackOrder(userOrders[0]?.id || userOrders[0]?._id);
+                }}
+                className="py-3 px-4 rounded-xl bg-purple-50 hover:bg-purple-100 dark:bg-white/10 dark:hover:bg-white/20 border border-purple-200 dark:border-white/10 text-slate-900 dark:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+              >
+                <Truck className="w-4 h-4 text-pink-500" />
+                <span>Live Tracking</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Category Department Highlights */}
       <CategoryHighlights
@@ -59,7 +124,7 @@ const HomePage = ({
               product={product}
               onSelect={onSelectProduct}
               onSelectProduct={onSelectProduct}
-              onQuickView={onSelectProduct}
+              onQuickView={onQuickView || onSelectProduct}
             />
           ))}
         </div>

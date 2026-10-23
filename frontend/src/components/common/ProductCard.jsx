@@ -211,15 +211,15 @@ const ProductCard = ({ product, onSelect, onSelectProduct, onQuickView }) => {
           </div>
         </div>
 
-        {/* Mobile View Details Button */}
+        {/* Mobile Quick View & Details Button */}
         <div className="sm:hidden mt-2 pt-2 border-t border-purple-100 dark:border-brand-500/15">
           <button
             type="button"
-            onClick={handleCardClick}
-            className="w-full py-1.5 px-2 rounded-lg bg-purple-50 dark:bg-white/5 hover:bg-purple-100 dark:hover:bg-white/10 text-purple-900 dark:text-white/90 text-[11px] font-bold flex items-center justify-center gap-1.5 border border-purple-200 dark:border-white/10"
+            onClick={handleQuickAddClick}
+            className="w-full py-2 px-2.5 rounded-xl bg-pink-50 hover:bg-pink-100 dark:bg-pink-500/15 dark:hover:bg-pink-500/25 text-pink-700 dark:text-pink-300 text-[11px] font-black flex items-center justify-center gap-1.5 border border-pink-200 dark:border-pink-500/30 transition-all active:scale-98 shadow-xs"
           >
-            <Eye className="w-3 h-3 text-pink-500" />
-            <span>View Details</span>
+            <Eye className="w-3.5 h-3.5 text-pink-500" />
+            <span>Quick View & Details</span>
           </button>
         </div>
       </div>

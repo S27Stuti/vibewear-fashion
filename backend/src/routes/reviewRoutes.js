@@ -3,7 +3,7 @@ const {
   createProductReview,
   getProductReviews
 } = require('../controllers/reviewController');
-const { protect } = require('../middleware/authMiddleware');
+const { optionalAuth } = require('../middleware/authMiddleware');
 
 // mergeParams: true allows accessing :productId from parent router
 const router = express.Router({ mergeParams: true });
@@ -11,6 +11,6 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(getProductReviews)
-  .post(protect, createProductReview);
+  .post(optionalAuth, createProductReview);
 
 module.exports = router;

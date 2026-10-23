@@ -37,9 +37,21 @@ const User = sequelize.define(
       }
     },
     role: {
-      type: DataTypes.ENUM('Customer', 'Admin'),
+      type: DataTypes.STRING(50),
       defaultValue: 'Customer',
       allowNull: false
+    },
+    phone: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    vehicleDetails: {
+      type: DataTypes.STRING(150),
+      allowNull: true
+    },
+    licenseNumber: {
+      type: DataTypes.STRING(100),
+      allowNull: true
     }
   },
   {

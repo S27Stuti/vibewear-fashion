@@ -9,7 +9,7 @@ const FilterDrawer = ({
   totalMatchingCount
 }) => {
   const [draftCategory, setDraftCategory] = useState(initialFilters.category || 'All');
-  const [draftMaxPrice, setDraftMaxPrice] = useState(initialFilters.maxPrice || 1500);
+  const [draftMaxPrice, setDraftMaxPrice] = useState(initialFilters.maxPrice || 5000);
   const [draftSizes, setDraftSizes] = useState(initialFilters.selectedSizes || []);
   const [draftColors, setDraftColors] = useState(initialFilters.selectedColors || []);
   const [draftRating, setDraftRating] = useState(initialFilters.minRating || 0);
@@ -18,7 +18,7 @@ const FilterDrawer = ({
   useEffect(() => {
     if (isOpen) {
       setDraftCategory(initialFilters.category || 'All');
-      setDraftMaxPrice(initialFilters.maxPrice || 1500);
+      setDraftMaxPrice(initialFilters.maxPrice || 5000);
       setDraftSizes(initialFilters.selectedSizes || []);
       setDraftColors(initialFilters.selectedColors || []);
       setDraftRating(initialFilters.minRating || 0);
@@ -54,7 +54,7 @@ const FilterDrawer = ({
 
   const handleReset = () => {
     setDraftCategory('All');
-    setDraftMaxPrice(1500);
+    setDraftMaxPrice(5000);
     setDraftSizes([]);
     setDraftColors([]);
     setDraftRating(0);
@@ -78,7 +78,7 @@ const FilterDrawer = ({
       {/* Backdrop */}
       <div onClick={onClose} className="absolute inset-0 bg-black/75 backdrop-blur-sm transition-opacity" />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-3 sm:pl-10">
         <div className="w-screen max-w-md bg-white dark:bg-[#0F1420] border-l border-purple-200 dark:border-white/10 shadow-2xl flex flex-col text-slate-900 dark:text-white">
           {/* Header */}
           <div className="p-6 border-b border-purple-200 dark:border-white/10 flex items-center justify-between">
@@ -135,15 +135,15 @@ const FilterDrawer = ({
               <input
                 type="range"
                 min="299"
-                max="1500"
-                step="50"
+                max="5000"
+                step="100"
                 value={draftMaxPrice}
                 onChange={(e) => setDraftMaxPrice(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500"
               />
               <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400 mt-1.5">
                 <span>₹299</span>
-                <span>₹1500+</span>
+                <span>₹5,000+</span>
               </div>
             </div>
 
@@ -243,7 +243,7 @@ const FilterDrawer = ({
           </div>
 
           {/* Footer with Apply and Reset Buttons */}
-          <div className="p-6 border-t border-purple-200 dark:border-brand-500/20 bg-slate-50/95 dark:bg-black flex items-center gap-3">
+          <div className="p-4 sm:p-6 pb-safe border-t border-purple-200 dark:border-brand-500/20 bg-slate-50/95 dark:bg-black flex items-center gap-3">
             <button
               type="button"
               onClick={handleReset}

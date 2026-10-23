@@ -27,53 +27,53 @@ const Footer = ({ onSelectCategory }) => {
   return (
     <footer className="bg-white dark:bg-[#06060A] border-t border-purple-200 dark:border-brand-500/20 text-slate-700 dark:text-slate-300 transition-colors duration-200">
       {/* Brand Value Pillars */}
-      <div className="border-b border-purple-100 dark:border-white/10 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
-          <div className="flex flex-col md:flex-row items-center gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-sm dark:shadow-none">
-            <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
-              <Truck className="w-6 h-6 text-brand-600 dark:text-brand-500" />
+      <div className="border-b border-purple-100 dark:border-white/10 py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
+          <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-xs dark:shadow-none">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600 dark:text-brand-500" />
             </div>
             <div>
-              <h5 className="font-extrabold text-slate-900 dark:text-white text-sm">Free Express Delivery</h5>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">On all orders over $75</p>
+              <h5 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Free Express Delivery</h5>
+              <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 mt-0.5">On all orders over ₹799</p>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-sm dark:shadow-none">
-            <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0">
-              <RotateCcw className="w-6 h-6 text-pink-600 dark:text-pink-500" />
+          <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-xs dark:shadow-none">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0">
+              <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 dark:text-pink-500" />
             </div>
             <div>
-              <h5 className="font-extrabold text-slate-900 dark:text-white text-sm">30-Day Easy Returns</h5>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Instant store credit or refund</p>
+              <h5 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">30-Day Easy Returns</h5>
+              <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 mt-0.5">Instant store credit or refund</p>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-sm dark:shadow-none">
-            <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-6 h-6 text-brand-600 dark:text-brand-500" />
+          <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-xs dark:shadow-none">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-brand-600 dark:text-brand-500" />
             </div>
             <div>
-              <h5 className="font-extrabold text-slate-900 dark:text-white text-sm">100% Authentic Quality</h5>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Premium combed fabrics</p>
+              <h5 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">100% Authentic Quality</h5>
+              <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 mt-0.5">Premium combed fabrics</p>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-sm dark:shadow-none">
-            <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0">
-              <Headphones className="w-6 h-6 text-pink-600 dark:text-pink-500" />
+          <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-purple-100 dark:border-transparent hover:border-purple-300 dark:hover:border-brand-500/30 transition-all shadow-xs dark:shadow-none">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center shrink-0">
+              <Headphones className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600 dark:text-pink-500" />
             </div>
             <div>
-              <h5 className="font-extrabold text-slate-900 dark:text-white text-sm">24/7 Priority Support</h5>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Dedicated styling assistance</p>
+              <h5 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">24/7 Priority Support</h5>
+              <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 mt-0.5">Dedicated styling assistance</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
@@ -207,13 +207,6 @@ const Footer = ({ onSelectCategory }) => {
         <div className="mt-12 pt-8 border-t border-purple-100 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500">
           <p>© {new Date().getFullYear()} VibeWear Inc. All rights reserved.</p>
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
-            <a href="http://localhost:5000/database" target="_blank" rel="noopener noreferrer" className="text-pink-600 dark:text-pink-400 font-bold hover:underline flex items-center gap-1">
-              <span>💾 Live Database Inspector</span>
-              <span class="text-xs">↗</span>
-            </a>
-            <a href="http://localhost:5000/api/health" target="_blank" rel="noopener noreferrer" className="text-purple-600 dark:text-purple-400 font-semibold hover:underline">
-              Backend Health API
-            </a>
             <a href="#privacy" className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Privacy Policy</a>
             <a href="#terms" className="hover:text-pink-600 dark:hover:text-pink-400 transition-colors">Terms of Service</a>
           </div>

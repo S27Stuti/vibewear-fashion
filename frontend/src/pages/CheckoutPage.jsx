@@ -27,10 +27,11 @@ import {
   FileCheck2,
   CreditCard,
   Copy,
-  Settings
+  Settings,
+  Package
 } from 'lucide-react';
 
-const CheckoutPage = ({ onNavigateBack, onOrderComplete }) => {
+const CheckoutPage = ({ onNavigateBack, onOrderComplete, onTrackOrder, onNavigateCustomer }) => {
   const { cartItems, subtotal, tax, shipping, totalPrice, clearCart } = useCart();
   const { user, addOrder, openProfile } = useAuth();
 
@@ -302,6 +303,7 @@ const CheckoutPage = ({ onNavigateBack, onOrderComplete }) => {
 
     const newOrder = {
       id: orderId,
+      _id: orderId,
       transactionId: txnId,
       createdAt: new Date().toISOString(),
       orderStatus: 'Confirmed',
@@ -312,6 +314,59 @@ const CheckoutPage = ({ onNavigateBack, onOrderComplete }) => {
       tax: effectiveTax,
       shipping: effectiveShipping,
       shippingAddress: address,
+      deliveryPartnerName: 'Vikram Malhotra',
+      deliveryPartnerPhone: '+91 98201 55432',
+      deliveryPartnerEmail: 'delivery@vibewear.com',
+      deliveryPartnerVehicle: 'Hero Electric Optima - MH 02 CW 9921',
+      deliveryNotes: 'Order confirmed and prioritized for express fashion delivery.',
+      estimatedDeliveryTime: 'Today by 7:30 PM (Express 1-Day Delivery)',
+      trackingTimeline: [
+        {
+          step: 1,
+          status: 'Confirmed',
+          title: 'Order Confirmed & Placed',
+          location: 'VibeWear Digital Fashion Hub, Mumbai',
+          timestamp: new Date().toISOString(),
+          completed: true,
+          description: 'Order confirmed and verified by automated dispatch system.'
+        },
+        {
+          step: 2,
+          status: 'Processing',
+          title: 'Quality Inspected & Packed',
+          location: 'Central Fulfilment Center, Warehouse 4',
+          timestamp: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+          completed: true,
+          description: 'Quality approved and sealed in premium tamper-proof package.'
+        },
+        {
+          step: 3,
+          status: 'Shipped',
+          title: 'Dispatched to Delivery Partner',
+          location: 'Mumbai Logistics Hub, Express Terminal',
+          timestamp: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
+          completed: true,
+          description: 'Handed over to delivery agent Vikram Malhotra (MH 02 CW 9921).'
+        },
+        {
+          step: 4,
+          status: 'Out for Delivery',
+          title: 'Out for Delivery',
+          location: address.city || 'Customer Shipping Location',
+          timestamp: null,
+          completed: false,
+          description: 'Delivery partner Vikram Malhotra is en route.'
+        },
+        {
+          step: 5,
+          status: 'Delivered',
+          title: 'Delivered Successfully',
+          location: address.city || 'Customer Shipping Location',
+          timestamp: null,
+          completed: false,
+          description: 'Package handed over safely with delivery confirmation.'
+        }
+      ],
       items: activeItems.map((item) => ({
         title: item.product?.title || 'VibeWear Designer Apparel',
         size: item.size || 'M',
@@ -379,7 +434,33 @@ const CheckoutPage = ({ onNavigateBack, onOrderComplete }) => {
             <span>Continue Shopping</span>
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                if (onNavigateCustomer) {
+                  onNavigateCustomer();
+                } else {
+                  openProfile('orders');
+                }
+              }}
+              className="py-2.5 px-4 rounded-xl bg-purple-100 hover:bg-purple-200 dark:bg-white/10 dark:hover:bg-white/20 border border-purple-200 dark:border-white/10 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer shadow-xs"
+            >
+              <Package className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+              <span>View All My Orders</span>
+            </button>
+
+            {onTrackOrder && (
+              <button
+                type="button"
+                onClick={() => onTrackOrder(confirmedOrder.id || confirmedOrder._id)}
+                className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-pink-600 via-brand-600 to-purple-600 hover:from-pink-500 hover:to-brand-500 text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl shadow-pink-500/30 hover:scale-105 transition-all cursor-pointer border border-pink-400/40 animate-pulse-subtle"
+              >
+                <Truck className="w-4 h-4 text-white" />
+                <span>Track Order Live (Rider Details)</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={() => window.print()}

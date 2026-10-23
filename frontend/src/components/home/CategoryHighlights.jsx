@@ -54,10 +54,10 @@ const CategoryHighlights = ({ onSelectCategory, onNavigateProducts }) => {
                 <span className="text-xs font-semibold text-pink-400 uppercase tracking-wider">
                   Collection
                 </span>
-                <h3 className="text-2xl font-bold font-display text-white mt-0.5 group-hover:text-pink-300 transition-colors">
+                <h3 className="text-2xl font-bold font-display text-white !text-white mt-0.5 group-hover:text-pink-300 transition-colors">
                   {cat.targetAudience}
                 </h3>
-                <p className="text-xs text-white/80 line-clamp-1 mt-1 font-normal">
+                <p className="text-xs text-white/90 !text-white line-clamp-1 mt-1 font-normal">
                   {cat.description}
                 </p>
               </div>

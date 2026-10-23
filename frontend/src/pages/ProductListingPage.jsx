@@ -16,6 +16,7 @@ const ProductListingPage = ({
   currentCategory,
   onSelectCategory,
   onSelectProduct,
+  onQuickView,
   searchTerm,
   onClearSearch
 }) => {
@@ -24,7 +25,7 @@ const ProductListingPage = ({
   // Active applied filters
   const [appliedFilters, setAppliedFilters] = useState({
     category: currentCategory || 'All',
-    maxPrice: 1500,
+    maxPrice: 5000,
     selectedSizes: [],
     selectedColors: [],
     minRating: 0,
@@ -50,7 +51,7 @@ const ProductListingPage = ({
   const handleResetAll = () => {
     setAppliedFilters({
       category: 'All',
-      maxPrice: 1500,
+      maxPrice: 5000,
       selectedSizes: [],
       selectedColors: [],
       minRating: 0,
@@ -161,7 +162,7 @@ const ProductListingPage = ({
         </div>
 
         {/* Quick Department Pill Switches */}
-        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-white/[0.04] border border-purple-200 dark:border-white/10 overflow-x-auto shrink-0 shadow-inner dark:shadow-none">
+        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-white/[0.04] border border-purple-200 dark:border-white/10 overflow-x-auto no-scrollbar shrink-0 shadow-inner dark:shadow-none">
           {['All', 'Men', 'Women', 'Kids'].map((cat) => (
             <button
               key={cat}
@@ -296,7 +297,7 @@ const ProductListingPage = ({
                 product={product}
                 onSelect={onSelectProduct}
                 onSelectProduct={onSelectProduct}
-                onQuickView={onSelectProduct}
+                onQuickView={onQuickView || onSelectProduct}
               />
             ))}
           </div>

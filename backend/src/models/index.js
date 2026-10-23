@@ -8,9 +8,13 @@ const Review = require('./Review');
 
 // Associations
 
-// User <-> Order
+// User <-> Order (Customer)
 User.hasMany(Order, { foreignKey: 'userId', as: 'orders', onDelete: 'CASCADE' });
 Order.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+// User <-> Order (Delivery Partner)
+User.hasMany(Order, { foreignKey: 'deliveryPartnerId', as: 'assignedDeliveries', onDelete: 'SET NULL' });
+Order.belongsTo(User, { foreignKey: 'deliveryPartnerId', as: 'deliveryPartner' });
 
 // Order <-> OrderItem
 Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'items', onDelete: 'CASCADE' });

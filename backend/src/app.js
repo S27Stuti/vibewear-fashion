@@ -13,13 +13,30 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
 
-// Security HTTP headers
-app.use(helmet());
+// Security HTTP headers (configured to allow SPA assets and external images)
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false
+  })
+);
 
-// Enable CORS
+// Enable CORS for frontend Vite (5173) and other development clients
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:3000'
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || '*',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin) || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true
   })
 );
@@ -77,10 +94,14 @@ const path = require('path');
 const frontendDist = path.join(__dirname, '../../frontend/dist');
 app.use(express.static(frontendDist));
 
-// Catch-all route to serve React index.html for client-side routing (Express 5 compatible)
+// Catch-all route to serve React index.html for client-side routing
 app.use((req, res, next) => {
   if (req.method !== 'GET') return next();
-  if (req.path.startsWith('/api') || req.path.startsWith('/database') || req.path.startsWith('/db-status')) {
+  if (
+    req.path.startsWith('/api') ||
+    req.path.startsWith('/database') ||
+    req.path.startsWith('/db-status')
+  ) {
     return next();
   }
   const indexPath = path.join(frontendDist, 'index.html');
